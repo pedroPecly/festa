@@ -192,100 +192,153 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
                     Nenhuma confirmacao atende aos filtros atuais.
                 </div>
             ) : (
-                <div className="overflow-x-auto">
-                    <table className="min-w-[720px] w-full text-left text-sm">
-                        <thead className="bg-white/70 text-[10px] uppercase tracking-[0.3em] text-[#8a7f74]">
-                            <tr>
-                                <th
-                                    className="px-6 py-4 font-medium"
-                                    aria-sort={getAriaSort("name")}
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => handleSort("name")}
-                                        className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
-                                    >
-                                        <span>Nome</span>
-                                        {renderIndicator("name")}
-                                    </button>
-                                </th>
-                                <th
-                                    className="px-6 py-4 font-medium"
-                                    aria-sort={getAriaSort("guests")}
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => handleSort("guests")}
-                                        className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
-                                    >
-                                        <span>Convidados</span>
-                                        {renderIndicator("guests")}
-                                    </button>
-                                </th>
-                                <th
-                                    className="px-6 py-4 font-medium"
-                                    aria-sort={getAriaSort("phone")}
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => handleSort("phone")}
-                                        className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
-                                    >
-                                        <span>WhatsApp</span>
-                                        {renderIndicator("phone")}
-                                    </button>
-                                </th>
-                                <th
-                                    className="px-6 py-4 font-medium"
-                                    aria-sort={getAriaSort("message")}
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => handleSort("message")}
-                                        className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
-                                    >
-                                        <span>Mensagem</span>
-                                        {renderIndicator("message")}
-                                    </button>
-                                </th>
-                                <th
-                                    className="px-6 py-4 font-medium"
-                                    aria-sort={getAriaSort("created_at")}
-                                >
-                                    <button
-                                        type="button"
-                                        onClick={() => handleSort("created_at")}
-                                        className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
-                                    >
-                                        <span>Confirmado em</span>
-                                        {renderIndicator("created_at")}
-                                    </button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-[#e5d9cb]">
+                <>
+                    <div className="px-4 pb-4 md:hidden">
+                        <div className="grid gap-3">
                             {sortedGuests.map((guest) => (
-                                <tr key={guest.id} className="align-top">
-                                    <td className="px-6 py-4 font-medium text-[#1b1a17]">
-                                        {guest.name}
-                                    </td>
-                                    <td className="px-6 py-4 text-[#1b1a17]">
-                                        {guest.guests}
-                                    </td>
-                                    <td className="px-6 py-4 text-[#1b1a17]">
-                                        {guest.phone}
-                                    </td>
-                                    <td className="px-6 py-4 text-[#6f655c]">
-                                        {guest.message || "Sem mensagem"}
-                                    </td>
-                                    <td className="px-6 py-4 text-xs text-[#8a7f74]">
-                                        {formatDate(guest.created_at)}
-                                    </td>
-                                </tr>
+                                <div
+                                    key={guest.id}
+                                    className="rounded-2xl border border-[#e5d9cb] bg-white/90 p-4 shadow-[var(--shadow)]"
+                                >
+                                    <div className="flex items-start justify-between gap-3">
+                                        <div>
+                                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#8a7f74]">
+                                                Nome
+                                            </p>
+                                            <p className="mt-1 text-base font-medium text-[#1b1a17]">
+                                                {guest.name}
+                                            </p>
+                                        </div>
+                                        <div className="rounded-full border border-[#d9c9b4] bg-[#f6f2ec] px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-[#6f655c]">
+                                            {guest.guests} convidado
+                                            {guest.guests === 1 ? "" : "s"}
+                                        </div>
+                                    </div>
+                                    <div className="mt-3 grid gap-2 text-xs">
+                                        <div className="flex items-center justify-between gap-3">
+                                            <span className="uppercase tracking-[0.3em] text-[#8a7f74]">
+                                                WhatsApp
+                                            </span>
+                                            <span className="text-[#1b1a17]">
+                                                {guest.phone}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center justify-between gap-3">
+                                            <span className="uppercase tracking-[0.3em] text-[#8a7f74]">
+                                                Confirmado
+                                            </span>
+                                            <span className="text-[#1b1a17]">
+                                                {formatDate(guest.created_at)}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="mt-3 rounded-xl border border-[#e5d9cb] bg-white/80 p-3 text-sm text-[#4f463f]">
+                                        <p className="text-[10px] uppercase tracking-[0.3em] text-[#8a7f74]">
+                                            Mensagem
+                                        </p>
+                                        <p className="mt-1">
+                                            {guest.message || "Sem mensagem"}
+                                        </p>
+                                    </div>
+                                </div>
                             ))}
-                        </tbody>
-                    </table>
-                </div>
+                        </div>
+                    </div>
+                    <div className="hidden overflow-x-auto md:block">
+                        <table className="min-w-[720px] w-full text-left text-sm">
+                            <thead className="bg-white/70 text-[10px] uppercase tracking-[0.3em] text-[#8a7f74]">
+                                <tr>
+                                    <th
+                                        className="px-6 py-4 font-medium"
+                                        aria-sort={getAriaSort("name")}
+                                    >
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSort("name")}
+                                            className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
+                                        >
+                                            <span>Nome</span>
+                                            {renderIndicator("name")}
+                                        </button>
+                                    </th>
+                                    <th
+                                        className="px-6 py-4 font-medium"
+                                        aria-sort={getAriaSort("guests")}
+                                    >
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSort("guests")}
+                                            className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
+                                        >
+                                            <span>Convidados</span>
+                                            {renderIndicator("guests")}
+                                        </button>
+                                    </th>
+                                    <th
+                                        className="px-6 py-4 font-medium"
+                                        aria-sort={getAriaSort("phone")}
+                                    >
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSort("phone")}
+                                            className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
+                                        >
+                                            <span>WhatsApp</span>
+                                            {renderIndicator("phone")}
+                                        </button>
+                                    </th>
+                                    <th
+                                        className="px-6 py-4 font-medium"
+                                        aria-sort={getAriaSort("message")}
+                                    >
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSort("message")}
+                                            className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
+                                        >
+                                            <span>Mensagem</span>
+                                            {renderIndicator("message")}
+                                        </button>
+                                    </th>
+                                    <th
+                                        className="px-6 py-4 font-medium"
+                                        aria-sort={getAriaSort("created_at")}
+                                    >
+                                        <button
+                                            type="button"
+                                            onClick={() => handleSort("created_at")}
+                                            className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
+                                        >
+                                            <span>Confirmado em</span>
+                                            {renderIndicator("created_at")}
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-[#e5d9cb]">
+                                {sortedGuests.map((guest) => (
+                                    <tr key={guest.id} className="align-top">
+                                        <td className="px-6 py-4 font-medium text-[#1b1a17]">
+                                            {guest.name}
+                                        </td>
+                                        <td className="px-6 py-4 text-[#1b1a17]">
+                                            {guest.guests}
+                                        </td>
+                                        <td className="px-6 py-4 text-[#1b1a17]">
+                                            {guest.phone}
+                                        </td>
+                                        <td className="px-6 py-4 text-[#6f655c]">
+                                            {guest.message || "Sem mensagem"}
+                                        </td>
+                                        <td className="px-6 py-4 text-xs text-[#8a7f74]">
+                                            {formatDate(guest.created_at)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
             )}
         </section>
     );
