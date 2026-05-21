@@ -71,12 +71,14 @@ export const eventData = {
     title: "Sua presenca ja e o presente principal",
     description: "Se quiser trazer algo simbolico:",
     items: [
-      "Ovo.",
-      "Galinha.",
-      "Carro.",
+      "Ovo",
+      "Galinha",
+      "Carro",
       "Maçaneta",
       "flagelo cosmico",
-      "ansiolitico"
+      "ansiolitico",
+      "rtx 5090",
+      "qualquer pinga",
     ],
   },
   contact: {
