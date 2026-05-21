@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
+import RouteScrollReset from "@/components/RouteScrollReset";
 
 const displayFont = Fraunces({
   variable: "--font-display",
@@ -30,6 +31,7 @@ export default function RootLayout({
       className={`${displayFont.variable} ${bodyFont.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#f6f2ec] text-[#1b1a17]">
+        <RouteScrollReset />
         {children}
       </body>
     </html>

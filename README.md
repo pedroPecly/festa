@@ -4,6 +4,13 @@
 Site profissional para confirmacao de presenca do aniversario do Pedro, com
 programacao, detalhes do evento e formulario integrado ao Supabase.
 
+## Novidades
+- Nova pagina de convidados em `/convidados`, com resumo e tabela dos confirmados.
+- Busca rapida e ordenacao por coluna na tabela de convidados.
+- Transicao entre paginas com efeito lateral (ida e volta) via View Transitions.
+- Scroll sempre inicia no topo ao trocar de pagina; link de inicio aponta para o topo real.
+- Campo "Numero de convidados" inicia com valor 1.
+
 ## Rodar localmente
 1. Instale dependencias: `npm install`
 2. Copie o arquivo `.env.local.example` para `.env.local`

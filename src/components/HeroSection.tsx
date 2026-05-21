@@ -18,7 +18,7 @@ export default function HeroSection({
   highlights,
 }: HeroSectionProps) {
   return (
-    <section id="inicio" className="scroll-mt-24">
+    <section>
       <div className="max-w-3xl">
         <p className="text-xs uppercase tracking-[0.4em] text-[#8a7f74]">
           {eyebrow}

@@ -67,3 +67,74 @@ body {
     transform: translateY(0px);
   }
 }
+
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-18%);
+    opacity: 0.6;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(18%);
+    opacity: 0.6;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+:root[data-transition-direction="forward"]::view-transition-old(root) {
+  animation: slide-out-left 320ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  mix-blend-mode: normal;
+}
+
+:root[data-transition-direction="forward"]::view-transition-new(root) {
+  animation: slide-in-right 320ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  mix-blend-mode: normal;
+}
+
+:root[data-transition-direction="back"]::view-transition-old(root) {
+  animation: slide-out-right 320ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  mix-blend-mode: normal;
+}
+
+:root[data-transition-direction="back"]::view-transition-new(root) {
+  animation: slide-in-left 320ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  mix-blend-mode: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}

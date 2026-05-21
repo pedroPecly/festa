@@ -82,6 +82,7 @@ export default function RsvpSection({
                   name="guests"
                   type="number"
                   min={1}
+                  defaultValue={1}
                   placeholder="1"
                   className="mt-2 w-full rounded-xl border border-[#d9c9b4] bg-white/90 px-4 py-3 text-sm text-[#1b1a17] placeholder:text-[#9b8f83] focus:border-[#b98d5f] focus:outline-none focus:ring-2 focus:ring-[#ead6bf]"
                   required

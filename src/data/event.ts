@@ -20,6 +20,7 @@ export const eventData = {
       { href: "#rsvp", label: "Confirmacao" },
       { href: "#presentes", label: "Presentes" },
       { href: "#contato", label: "Contato" },
+      { href: "/convidados", label: "Convidados" },
     ] satisfies NavLink[],
   },
   hero: {
@@ -36,7 +37,7 @@ export const eventData = {
       {
         label: "Local",
         value: "Itaperuna",
-        description: "Rua Maria Ortega Arrabal, 291",
+        description: "Rua Maria Ortega Arrabal, 291, Bairro Aeroporto",
       },
     ] satisfies HighlightItem[],
   },
@@ -46,7 +47,7 @@ export const eventData = {
     description: "Um encontro leve e acolhedor para celebrar com quem importa.",
     start: {
       label: "Inicio",
-      time: "20h",
+      time: "20:00",
       description: "Recepcao e boas-vindas",
     },
     location: {
