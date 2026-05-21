@@ -8,12 +8,14 @@ type ViewTransitionLinkProps = {
   href: string;
   className?: string;
   children: ReactNode;
+  onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 };
 
 export default function ViewTransitionLink({
   href,
   className,
   children,
+  onClick,
 }: ViewTransitionLinkProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -35,6 +37,8 @@ export default function ViewTransitionLink({
   };
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    onClick?.(event);
+
     if (event.defaultPrevented) {
       return;
     }

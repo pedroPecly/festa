@@ -155,7 +155,7 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
                 </div>
 
                 <div className="flex flex-col gap-3 md:flex-row md:flex-wrap md:items-end">
-                    <div className="w-full md:w-64">
+                    <div className="w-full md:w-52">
                         <label className="text-[10px] uppercase tracking-[0.3em] text-[#8a7f74]">
                             Buscar
                         </label>
