@@ -32,7 +32,7 @@ export const eventData = {
       {
         label: "Data",
         value: "23 de maio de 2026",
-        description: "20h",
+        description: "Sabado",
       },
       {
         label: "Local",
