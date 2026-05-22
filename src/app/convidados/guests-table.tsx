@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 
 import type { GuestRow } from "./types";
 
-type SortKey = "name" | "guests" | "phone" | "message" | "created_at";
+type SortKey = "name" | "guests" | "message" | "created_at";
 
 type SortDirection = "asc" | "desc";
 
@@ -16,7 +16,6 @@ type GuestsTableProps = {
 const defaultDirectionByKey: Record<SortKey, SortDirection> = {
     name: "asc",
     guests: "desc",
-    phone: "asc",
     message: "asc",
     created_at: "desc",
 };
@@ -42,7 +41,7 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
     const filteredGuests = useMemo(() => {
         return guests.filter((guest) => {
             if (normalizedQuery) {
-                const haystack = `${guest.name} ${guest.phone} ${guest.message ?? ""}`
+                const haystack = `${guest.name} ${guest.message ?? ""}`
                     .toLowerCase()
                     .trim();
                 if (!haystack.includes(normalizedQuery)) {
@@ -76,14 +75,6 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
                 break;
             case "guests":
                 list.sort((a, b) => (a.guests - b.guests) * multiplier);
-                break;
-            case "phone":
-                list.sort(
-                    (a, b) =>
-                        a.phone.localeCompare(b.phone, "pt-BR", {
-                            sensitivity: "base",
-                        }) * multiplier
-                );
                 break;
             case "message":
                 list.sort(
@@ -161,7 +152,7 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
                         </label>
                         <input
                             type="search"
-                            placeholder="Nome, WhatsApp ou mensagem"
+                            placeholder="Nome ou mensagem"
                             value={query}
                             onChange={(event) => setQuery(event.target.value)}
                             className="mt-2 w-full rounded-xl border border-[#d9c9b4] bg-white/90 px-4 py-2 text-sm text-[#1b1a17] placeholder:text-[#9b8f83] focus:border-[#b98d5f] focus:outline-none focus:ring-2 focus:ring-[#ead6bf]"
@@ -217,14 +208,6 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
                                     <div className="mt-3 grid gap-2 text-xs">
                                         <div className="flex items-center justify-between gap-3">
                                             <span className="uppercase tracking-[0.3em] text-[#8a7f74]">
-                                                WhatsApp
-                                            </span>
-                                            <span className="text-[#1b1a17]">
-                                                {guest.phone}
-                                            </span>
-                                        </div>
-                                        <div className="flex items-center justify-between gap-3">
-                                            <span className="uppercase tracking-[0.3em] text-[#8a7f74]">
                                                 Confirmado
                                             </span>
                                             <span className="text-[#1b1a17]">
@@ -276,19 +259,6 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
                                     </th>
                                     <th
                                         className="px-6 py-4 font-medium"
-                                        aria-sort={getAriaSort("phone")}
-                                    >
-                                        <button
-                                            type="button"
-                                            onClick={() => handleSort("phone")}
-                                            className="inline-flex items-center gap-2 transition hover:text-[#1b1a17]"
-                                        >
-                                            <span>WhatsApp</span>
-                                            {renderIndicator("phone")}
-                                        </button>
-                                    </th>
-                                    <th
-                                        className="px-6 py-4 font-medium"
                                         aria-sort={getAriaSort("message")}
                                     >
                                         <button
@@ -323,9 +293,6 @@ export default function GuestsTable({ guests, errorMessage }: GuestsTableProps) 
                                         </td>
                                         <td className="px-6 py-4 text-[#1b1a17]">
                                             {guest.guests}
-                                        </td>
-                                        <td className="px-6 py-4 text-[#1b1a17]">
-                                            {guest.phone}
                                         </td>
                                         <td className="px-6 py-4 text-[#6f655c]">
                                             {guest.message || "Sem mensagem"}

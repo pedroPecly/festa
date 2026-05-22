@@ -31,7 +31,7 @@ async function getConfirmedGuests(): Promise<GuestsResult> {
     const supabase = getSupabaseAdmin();
     const { data, error } = await supabase
       .from("rsvps")
-      .select("id,name,phone,guests,message,created_at")
+      .select("id,name,guests,message,created_at")
       .eq("attendance", "sim")
       .order("created_at", { ascending: false });
 
